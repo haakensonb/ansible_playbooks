@@ -1,0 +1,21 @@
+---
+- name: Installs fail2ban on all hosts
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install fail2ban package
+      apt:
+        name: fail2ban
+        state: latest
+        update_cache: yes
+
+    - name: Start fail2ban service
+      service:
+        name: fail2ban
+        state: started
+
+    - name: Enable fail2ban service
+      service:
+        name: fail2ban
+        enabled: true
